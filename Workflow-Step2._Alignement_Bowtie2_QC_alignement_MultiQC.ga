@@ -1,0 +1,283 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "Step2. Alignement avec Bowtie2 et QC d'alignement avec MultiQC (paper)",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "KO fastq files"
+                }
+            ],
+            "label": "KO fastq files",
+            "name": "Input dataset collection",
+            "outputs": [],
+            "position": {
+                "bottom": 249.26136016845703,
+                "height": 61.77556610107422,
+                "left": 71.9602279663086,
+                "right": 271.9602279663086,
+                "top": 187.4857940673828,
+                "width": 200,
+                "x": 71.9602279663086,
+                "y": 187.4857940673828
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null, \"collection_type\": \"list\"}",
+            "tool_version": null,
+            "type": "data_collection_input",
+            "uuid": "b70d8d1e-c44d-4039-b58d-86debc6c03dc",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "HET fastq files"
+                }
+            ],
+            "label": "HET fastq files",
+            "name": "Input dataset collection",
+            "outputs": [],
+            "position": {
+                "bottom": 627.2726974487305,
+                "height": 61.77556610107422,
+                "left": 76.4772720336914,
+                "right": 276.4772720336914,
+                "top": 565.4971313476562,
+                "width": 200,
+                "x": 76.4772720336914,
+                "y": 565.4971313476562
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null, \"collection_type\": \"list\"}",
+            "tool_version": null,
+            "type": "data_collection_input",
+            "uuid": "8120fac2-b8ee-4b76-b5c5-4ced14018608",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/bowtie2/bowtie2/2.4.2+galaxy0",
+            "errors": null,
+            "id": 2,
+            "input_connections": {
+                "library|input_1": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Bowtie2",
+                    "name": "library"
+                }
+            ],
+            "label": "Bowtie2 on KO",
+            "name": "Bowtie2",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "bam"
+                },
+                {
+                    "name": "mapping_stats",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 345.64630126953125,
+                "height": 205.15625,
+                "left": 408.9772644042969,
+                "right": 608.9772644042969,
+                "top": 140.49005126953125,
+                "width": 200,
+                "x": 408.9772644042969,
+                "y": 140.49005126953125
+            },
+            "post_job_actions": {
+                "HideDatasetActionmapping_stats": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "mapping_stats"
+                },
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "KO BAMs"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/bowtie2/bowtie2/2.4.2+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "a6d65b0c67af",
+                "name": "bowtie2",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"analysis_type\": {\"analysis_type_selector\": \"simple\", \"__current_case__\": 0, \"presets\": \"--fast-local\"}, \"library\": {\"type\": \"single\", \"__current_case__\": 0, \"input_1\": {\"__class__\": \"RuntimeValue\"}, \"unaligned_file\": \"false\", \"aligned_file\": \"false\"}, \"reference_genome\": {\"source\": \"indexed\", \"__current_case__\": 0, \"index\": \"mm10\"}, \"rg\": {\"rg_selector\": \"do_not_set\", \"__current_case__\": 3}, \"sam_options\": {\"sam_options_selector\": \"yes\", \"__current_case__\": 0, \"sam_opt\": \"false\", \"no_unal\": \"true\", \"omit_sec_seq\": \"false\", \"sam_no_qname_trunc\": \"false\", \"xeq\": \"false\", \"soft_clipped_unmapped_tlen\": \"false\", \"reorder\": \"false\"}, \"save_mapping_stats\": \"true\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "24d186c3-a194-4779-b86b-fd00b03cb077",
+            "workflow_outputs": [
+                {
+                    "label": "KO BAMs",
+                    "output_name": "output",
+                    "uuid": "cd14ee0b-986a-4e24-b9cc-2ae875cd3e68"
+                }
+            ]
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/bowtie2/bowtie2/2.4.2+galaxy0",
+            "errors": null,
+            "id": 3,
+            "input_connections": {
+                "library|input_1": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Bowtie2",
+                    "name": "library"
+                }
+            ],
+            "label": "Bowtie2 on HET",
+            "name": "Bowtie2",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "bam"
+                },
+                {
+                    "name": "mapping_stats",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 721.647705078125,
+                "height": 205.15625,
+                "left": 403.991455078125,
+                "right": 603.991455078125,
+                "top": 516.491455078125,
+                "width": 200,
+                "x": 403.991455078125,
+                "y": 516.491455078125
+            },
+            "post_job_actions": {
+                "HideDatasetActionmapping_stats": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "mapping_stats"
+                },
+                "RenameDatasetActionoutput": {
+                    "action_arguments": {
+                        "newname": "HET BAMs"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/bowtie2/bowtie2/2.4.2+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "a6d65b0c67af",
+                "name": "bowtie2",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"analysis_type\": {\"analysis_type_selector\": \"simple\", \"__current_case__\": 0, \"presets\": \"--fast-local\"}, \"library\": {\"type\": \"single\", \"__current_case__\": 0, \"input_1\": {\"__class__\": \"RuntimeValue\"}, \"unaligned_file\": \"false\", \"aligned_file\": \"false\"}, \"reference_genome\": {\"source\": \"indexed\", \"__current_case__\": 0, \"index\": \"mm10\"}, \"rg\": {\"rg_selector\": \"do_not_set\", \"__current_case__\": 3}, \"sam_options\": {\"sam_options_selector\": \"yes\", \"__current_case__\": 0, \"sam_opt\": \"false\", \"no_unal\": \"true\", \"omit_sec_seq\": \"false\", \"sam_no_qname_trunc\": \"false\", \"xeq\": \"false\", \"soft_clipped_unmapped_tlen\": \"false\", \"reorder\": \"false\"}, \"save_mapping_stats\": \"true\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "2a2680ad-d780-483d-a6bb-d7ed9e8af868",
+            "workflow_outputs": [
+                {
+                    "label": "HET BAMs",
+                    "output_name": "output",
+                    "uuid": "1a74b830-ee26-4b5a-a322-0e5b46a8ba87"
+                }
+            ]
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.9+galaxy1",
+            "errors": null,
+            "id": 4,
+            "input_connections": {
+                "results_0|software_cond|input": {
+                    "id": 2,
+                    "output_name": "mapping_stats"
+                },
+                "results_1|software_cond|input": {
+                    "id": 3,
+                    "output_name": "mapping_stats"
+                }
+            },
+            "inputs": [],
+            "label": "MultiQC for bowtie2 alignment",
+            "name": "MultiQC",
+            "outputs": [
+                {
+                    "name": "stats",
+                    "type": "input"
+                },
+                {
+                    "name": "html_report",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "bottom": 670.8522644042969,
+                "height": 276.34942626953125,
+                "left": 915.007080078125,
+                "right": 1115.007080078125,
+                "top": 394.5028381347656,
+                "width": 200,
+                "x": 915.007080078125,
+                "y": 394.5028381347656
+            },
+            "post_job_actions": {
+                "HideDatasetActionstats": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "stats"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.9+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "75c93c70d094",
+                "name": "multiqc",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"comment\": \"\", \"export\": \"false\", \"flat\": \"false\", \"results\": [{\"__index__\": 0, \"software_cond\": {\"software\": \"bowtie2\", \"__current_case__\": 3, \"input\": {\"__class__\": \"ConnectedValue\"}}}, {\"__index__\": 1, \"software_cond\": {\"software\": \"bowtie2\", \"__current_case__\": 3, \"input\": {\"__class__\": \"ConnectedValue\"}}}], \"saveLog\": \"false\", \"title\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": null,
+            "type": "tool",
+            "uuid": "ff51d885-3f67-4087-a530-be787783536c",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "html_report",
+                    "uuid": "5dd5d846-053a-4d5e-925e-e768cea3e564"
+                }
+            ]
+        }
+    },
+    "tags": [],
+    "uuid": "203e6a28-5d1e-4ef9-9d66-b3cd36272da0",
+    "version": 5
+}

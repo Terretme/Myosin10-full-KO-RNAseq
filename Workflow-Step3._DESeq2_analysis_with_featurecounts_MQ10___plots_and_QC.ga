@@ -1,0 +1,446 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "Step3. DESeq2 analysis with featurecounts MQ10;  plots and QC (paper)",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "KO BAMs"
+                }
+            ],
+            "label": "KO BAMs",
+            "name": "Input dataset collection",
+            "outputs": [],
+            "position": {
+                "bottom": 204.8011245727539,
+                "height": 61.77556610107422,
+                "left": 314.47442626953125,
+                "right": 514.4744262695312,
+                "top": 143.0255584716797,
+                "width": 200,
+                "x": 314.47442626953125,
+                "y": 143.0255584716797
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null, \"collection_type\": \"list\"}",
+            "tool_version": null,
+            "type": "data_collection_input",
+            "uuid": "dd10bbd3-634d-4f5b-999c-0465561293bf",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "GTF-EMBL-GRcm38"
+                }
+            ],
+            "label": "GTF-EMBL-GRcm38",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "bottom": 404.22584533691406,
+                "height": 82.17329406738281,
+                "left": 295.46875,
+                "right": 495.46875,
+                "top": 322.05255126953125,
+                "width": 200,
+                "x": 295.46875,
+                "y": 322.05255126953125
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "5842a039-6a33-4072-bd2a-931467594e25",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 2,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "HET BAMs"
+                }
+            ],
+            "label": "HET BAMs",
+            "name": "Input dataset collection",
+            "outputs": [],
+            "position": {
+                "bottom": 612.8408737182617,
+                "height": 61.77556610107422,
+                "left": 301.50567626953125,
+                "right": 501.50567626953125,
+                "top": 551.0653076171875,
+                "width": 200,
+                "x": 301.50567626953125,
+                "y": 551.0653076171875
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null, \"collection_type\": \"list\"}",
+            "tool_version": null,
+            "type": "data_collection_input",
+            "uuid": "98bd182b-80b0-4e3c-adb0-221c284a493a",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/featurecounts/featurecounts/1.6.3",
+            "errors": null,
+            "id": 3,
+            "input_connections": {
+                "alignment": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "anno|reference_gene_sets": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "featureCounts",
+            "outputs": [
+                {
+                    "name": "output_short",
+                    "type": "tabular"
+                },
+                {
+                    "name": "output_summary",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "bottom": 315.163330078125,
+                "height": 215.15623474121094,
+                "left": 627.51416015625,
+                "right": 827.51416015625,
+                "top": 100.00709533691406,
+                "width": 200,
+                "x": 627.51416015625,
+                "y": 100.00709533691406
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput_summary": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_summary"
+                },
+                "RenameDatasetActionoutput_short": {
+                    "action_arguments": {
+                        "newname": "KO featureCounts"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output_short"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/featurecounts/featurecounts/1.6.3",
+            "tool_shed_repository": {
+                "changeset_revision": "1759d845181e",
+                "name": "featurecounts",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"alignment\": {\"__class__\": \"ConnectedValue\"}, \"anno\": {\"anno_select\": \"history\", \"__current_case__\": 2, \"reference_gene_sets\": {\"__class__\": \"ConnectedValue\"}}, \"extended_parameters\": {\"gff_feature_type\": \"exon\", \"gff_feature_attribute\": \"gene_id\", \"summarization_level\": \"false\", \"contribute_to_multiple_features\": \"false\", \"multimapping_enabled\": {\"multimapping_counts\": \"\", \"__current_case__\": 1}, \"mapping_quality\": \"10\", \"exon_exon_junction_read_counting_enabled\": {\"count_exon_exon_junction_reads\": \"false\", \"__current_case__\": 1}, \"long_reads\": \"false\", \"by_read_group\": \"false\", \"largest_overlap\": \"false\", \"min_overlap\": \"1\", \"frac_overlap\": \"0\", \"frac_overlap_feature\": \"0\", \"read_extension_5p\": \"0\", \"read_extension_3p\": \"0\", \"read_reduction\": \"\", \"primary\": \"false\", \"ignore_dup\": \"false\", \"R\": \"false\", \"count_split_alignments_only\": \"false\"}, \"format\": \"tabdel_short\", \"include_feature_length_file\": \"false\", \"pe_parameters\": {\"fragment_counting_enabled\": {\"fragment_counting\": \"\", \"__current_case__\": 1}, \"only_both_ends\": \"false\", \"exclude_chimerics\": \"true\"}, \"strand_specificity\": \"0\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.6.3",
+            "type": "tool",
+            "uuid": "d86d6b0f-117c-4c75-a63f-5e03b38f6367",
+            "workflow_outputs": [
+                {
+                    "label": "KO featureCounts",
+                    "output_name": "output_short",
+                    "uuid": "b1061ea1-670b-4495-b000-7d1c6e7c3c5f"
+                }
+            ]
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/featurecounts/featurecounts/1.6.3",
+            "errors": null,
+            "id": 4,
+            "input_connections": {
+                "alignment": {
+                    "id": 2,
+                    "output_name": "output"
+                },
+                "anno|reference_gene_sets": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "featureCounts",
+            "outputs": [
+                {
+                    "name": "output_short",
+                    "type": "tabular"
+                },
+                {
+                    "name": "output_summary",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "bottom": 698.1675872802734,
+                "height": 215.15623474121094,
+                "left": 646.5553588867188,
+                "right": 846.5553588867188,
+                "top": 483.0113525390625,
+                "width": 200,
+                "x": 646.5553588867188,
+                "y": 483.0113525390625
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput_summary": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output_summary"
+                },
+                "RenameDatasetActionoutput_short": {
+                    "action_arguments": {
+                        "newname": "HET featureCounts"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "output_short"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/featurecounts/featurecounts/1.6.3",
+            "tool_shed_repository": {
+                "changeset_revision": "1759d845181e",
+                "name": "featurecounts",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"alignment\": {\"__class__\": \"ConnectedValue\"}, \"anno\": {\"anno_select\": \"history\", \"__current_case__\": 2, \"reference_gene_sets\": {\"__class__\": \"ConnectedValue\"}}, \"extended_parameters\": {\"gff_feature_type\": \"exon\", \"gff_feature_attribute\": \"gene_id\", \"summarization_level\": \"false\", \"contribute_to_multiple_features\": \"false\", \"multimapping_enabled\": {\"multimapping_counts\": \"\", \"__current_case__\": 1}, \"mapping_quality\": \"12\", \"exon_exon_junction_read_counting_enabled\": {\"count_exon_exon_junction_reads\": \"false\", \"__current_case__\": 1}, \"long_reads\": \"false\", \"by_read_group\": \"false\", \"largest_overlap\": \"false\", \"min_overlap\": \"1\", \"frac_overlap\": \"0\", \"frac_overlap_feature\": \"0\", \"read_extension_5p\": \"0\", \"read_extension_3p\": \"0\", \"read_reduction\": \"\", \"primary\": \"false\", \"ignore_dup\": \"false\", \"R\": \"false\", \"count_split_alignments_only\": \"false\"}, \"format\": \"tabdel_short\", \"include_feature_length_file\": \"false\", \"pe_parameters\": {\"fragment_counting_enabled\": {\"fragment_counting\": \"\", \"__current_case__\": 1}, \"only_both_ends\": \"false\", \"exclude_chimerics\": \"true\"}, \"strand_specificity\": \"0\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.6.3",
+            "type": "tool",
+            "uuid": "0c8a103b-a563-42c8-8f7f-45c801e8c439",
+            "workflow_outputs": [
+                {
+                    "label": "HET featureCounts",
+                    "output_name": "output_short",
+                    "uuid": "0899cefe-a7af-44b8-8313-c95068d6f0ee"
+                }
+            ]
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/deseq2/deseq2/2.11.40.4",
+            "errors": null,
+            "id": 5,
+            "input_connections": {
+                "rep_factorName_0|rep_factorLevel_0|countsFile": {
+                    "id": 3,
+                    "output_name": "output_short"
+                },
+                "rep_factorName_0|rep_factorLevel_1|countsFile": {
+                    "id": 4,
+                    "output_name": "output_short"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool DESeq2",
+                    "name": "batch_factors"
+                }
+            ],
+            "label": "DEseq2 analysis - KOs vs HETs Featurecounts",
+            "name": "DESeq2",
+            "outputs": [
+                {
+                    "name": "deseq_out",
+                    "type": "tabular"
+                },
+                {
+                    "name": "plots",
+                    "type": "pdf"
+                }
+            ],
+            "position": {
+                "bottom": 533.3948516845703,
+                "height": 388.3380432128906,
+                "left": 1095.5823974609375,
+                "right": 1295.5823974609375,
+                "top": 145.0568084716797,
+                "width": 200,
+                "x": 1095.5823974609375,
+                "y": 145.0568084716797
+            },
+            "post_job_actions": {
+                "RenameDatasetActiondeseq_out": {
+                    "action_arguments": {
+                        "newname": "DESeq2 result - MyosinKO analysis"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "deseq_out"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/deseq2/deseq2/2.11.40.4",
+            "tool_shed_repository": {
+                "changeset_revision": "89d26b11d452",
+                "name": "deseq2",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"auto_mean_filter_off\": \"false\", \"batch_factors\": {\"__class__\": \"RuntimeValue\"}, \"esf\": \"\", \"fit_type\": \"1\", \"header\": \"true\", \"many_contrasts\": \"false\", \"normCounts\": \"false\", \"normRLog\": \"false\", \"normVST\": \"false\", \"outlier_filter_off\": \"false\", \"outlier_replace_off\": \"false\", \"pdf\": \"true\", \"rep_factorName\": [{\"__index__\": 0, \"factorName\": \"Genotype\", \"rep_factorLevel\": [{\"__index__\": 0, \"factorLevel\": \"KO\", \"countsFile\": {\"__class__\": \"ConnectedValue\"}}, {\"__index__\": 1, \"factorLevel\": \"HET\", \"countsFile\": {\"__class__\": \"ConnectedValue\"}}]}], \"tximport\": {\"tximport_selector\": \"count\", \"__current_case__\": 1}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.11.40.4",
+            "type": "tool",
+            "uuid": "2137edb5-6a40-40a8-9167-00b98421102f",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "plots",
+                    "uuid": "55f8a171-ffff-4e13-9e15-91def6418dd1"
+                },
+                {
+                    "label": "DESeq2 result - MyosinKO analysis",
+                    "output_name": "deseq_out",
+                    "uuid": "9b69807f-df03-48fb-a359-e5cd1a0b8c92"
+                }
+            ]
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.9+galaxy1",
+            "errors": null,
+            "id": 6,
+            "input_connections": {
+                "results_0|software_cond|input": {
+                    "id": 3,
+                    "output_name": "output_summary"
+                },
+                "results_1|software_cond|input": {
+                    "id": 4,
+                    "output_name": "output_summary"
+                }
+            },
+            "inputs": [],
+            "label": "MultiQC featurecounts for DESeq2",
+            "name": "MultiQC",
+            "outputs": [
+                {
+                    "name": "stats",
+                    "type": "input"
+                },
+                {
+                    "name": "html_report",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "bottom": 881.9956970214844,
+                "height": 255.95169067382812,
+                "left": 1183.5865478515625,
+                "right": 1383.5865478515625,
+                "top": 626.0440063476562,
+                "width": 200,
+                "x": 1183.5865478515625,
+                "y": 626.0440063476562
+            },
+            "post_job_actions": {
+                "HideDatasetActionstats": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "stats"
+                },
+                "RenameDatasetActionhtml_report": {
+                    "action_arguments": {
+                        "newname": "MultiQC on FeatureCounts"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "html_report"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.9+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "75c93c70d094",
+                "name": "multiqc",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"comment\": \"\", \"export\": \"false\", \"flat\": \"false\", \"results\": [{\"__index__\": 0, \"software_cond\": {\"software\": \"featureCounts\", \"__current_case__\": 9, \"input\": {\"__class__\": \"ConnectedValue\"}}}, {\"__index__\": 1, \"software_cond\": {\"software\": \"featureCounts\", \"__current_case__\": 9, \"input\": {\"__class__\": \"ConnectedValue\"}}}], \"saveLog\": \"false\", \"title\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.9+galaxy1",
+            "type": "tool",
+            "uuid": "21f4bb05-445a-4eb9-a3d6-4de1f03a3244",
+            "workflow_outputs": [
+                {
+                    "label": "MultiQC on FeatureCounts",
+                    "output_name": "html_report",
+                    "uuid": "53e98446-174b-4fcb-afc9-88550678474a"
+                }
+            ]
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/volcanoplot/volcanoplot/0.0.5",
+            "errors": null,
+            "id": 7,
+            "input_connections": {
+                "input": {
+                    "id": 5,
+                    "output_name": "deseq_out"
+                }
+            },
+            "inputs": [],
+            "label": "Volcano plot for DESeq2",
+            "name": "Volcano Plot",
+            "outputs": [
+                {
+                    "name": "plot",
+                    "type": "pdf"
+                }
+            ],
+            "position": {
+                "bottom": 433.52980041503906,
+                "height": 133.9630584716797,
+                "left": 1430.5396728515625,
+                "right": 1630.5396728515625,
+                "top": 299.5667419433594,
+                "width": 200,
+                "x": 1430.5396728515625,
+                "y": 299.5667419433594
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/volcanoplot/volcanoplot/0.0.5",
+            "tool_shed_repository": {
+                "changeset_revision": "83c573f2e73c",
+                "name": "volcanoplot",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"fdr_col\": \"7\", \"header\": \"auto\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"label_col\": \"1\", \"labels\": {\"label_select\": \"none\", \"__current_case__\": 2}, \"lfc_col\": \"3\", \"lfc_thresh\": \"0.0\", \"out_options\": {\"rscript_out\": \"false\"}, \"plot_options\": {\"boxes\": \"false\", \"title\": \"\", \"xlab\": \"\", \"ylab\": \"\", \"xmin\": null, \"xmax\": null, \"ymax\": null, \"legend\": \"\", \"legend_labs\": \"Down,Not Sig,Up\"}, \"pval_col\": \"6\", \"signif_thresh\": \"0.05\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.0.5",
+            "type": "tool",
+            "uuid": "cab67898-2080-4387-aa30-821906dd9fd1",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "plot",
+                    "uuid": "b6fc7980-7e66-4d2a-a243-f416d0aa5562"
+                }
+            ]
+        }
+    },
+    "tags": [],
+    "uuid": "07e0f475-c137-442d-af83-bc66e477fdac",
+    "version": 2
+}
