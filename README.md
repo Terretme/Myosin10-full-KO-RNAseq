@@ -13,6 +13,6 @@ Workflow-Step3._DESeq2_analysis_with_featurecounts_MQ10___plots_and_QC.ga : DESe
 
 Workflow-Step4._Reformate_DESeq2_outputs.ga : Reformate DESeq2 outputs, significant data Padj<0.05
 
-Reference genome : Ensembl_GTF_Mus_musculus.GRCm38.94
+Reference genome : Ensembl_GTF_Mus_musculus.GRCm38.94 https://ftp.ensembl.org/pub/release-94/gtf/mus_musculus/Mus_musculus.GRCm38.94.gtf.gz
 
 Data to ENA, read (fastq) : study PRJEB56821
